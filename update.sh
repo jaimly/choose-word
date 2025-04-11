@@ -10,7 +10,8 @@ Project=choose-word
 
 # 设置项目名、端口
 read -p "请输入端口:" Port
-read -p "是否build前端文件:" IS_BUILD # build耗内存太大，可能会卡死
+read -p "是否build前端文件:" IS_BUILD
+read -p "是否Docker部署:" IS_DOCKER
 
 # 更新代码
 git pull origin master
@@ -32,8 +33,9 @@ if [[ $IS_BUILD == 1 ]]; then
     echo "build前端成功"
 fi
 
-exit
-
+if [[ $IS_DOCKER != 1 ]]; then 
+    exit
+fi
 
 # 生成Dockerrile文件
 rm -rf Dockerfile
