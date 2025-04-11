@@ -42,7 +42,7 @@ rm -rf Dockerfile
 echo "FROM node:18" >> Dockerfile
 echo "ENV NODE_ENV production" >> Dockerfile
 echo "WORKDIR /app" >> Dockerfile
-echo "COPY ./dist /app/" >> Dockerfile
+echo "COPY . /app/" >> Dockerfile
 echo "CMD npm run preview" >> Dockerfile
 echo "生成DockerFile文件"
 
