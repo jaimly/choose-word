@@ -43,7 +43,7 @@ echo "FROM node:18" >> Dockerfile
 echo "ENV NODE_ENV production" >> Dockerfile
 echo "WORKDIR /app" >> Dockerfile
 echo "COPY ./dist /app/" >> Dockerfile
-echo "CMD npm preview" >> Dockerfile
+echo "CMD npm run preview" >> Dockerfile
 echo "生成DockerFile文件"
 
 # 停止并删除容器
