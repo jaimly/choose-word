@@ -33,6 +33,12 @@ if [[ $IS_BUILD == 1 ]]; then
     echo "build前端成功"
 fi
 
+# 复制静态文件到nginx映射目录
+rm -rf /home/www/choose-word/*
+cp ./dist/* /home/www/choose-word
+docker restart nginx
+echo "静态文件已复制"
+
 if [[ $IS_DOCKER != 1 ]]; then 
     exit
 fi
