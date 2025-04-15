@@ -26,7 +26,9 @@ npm run build
 echo "build前端成功"
 
 # 复制静态文件到nginx映射目录
-rm -rf /home/www/choose-word/*
-cp -avx ./dist/* /home/www/choose-word
-# docker restart nginx
+if [ ! -d "/home/www/$Project" ]; then
+    mkdir /home/www/$Project
+fi
+cp -avx ./dist/* /home/www/$Project
+docker restart nginx
 echo "静态文件已复制"

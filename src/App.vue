@@ -98,24 +98,18 @@ h1 {
 
 .startBtn {
     background-color: orangered;
-    border: none;
-    border-radius: 4px;
     color: white;
     font-size: xx-large;
     width: 120px;
     height: 50px;
     font-weight: bold;
     letter-spacing: 5px;
-    cursor: pointer;
 }
 
 .resetBtn {
   width: 80px;
   height: 40px;
   font-size: large;
-  border: none;
-  border-radius: 4px;
   letter-spacing: 3px;
-  cursor: pointer;
 }
 </style>
