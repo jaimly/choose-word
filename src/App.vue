@@ -1,9 +1,10 @@
 <script setup>
 import { ref, nextTick } from 'vue';
 import { words } from './data.json';
+
 const localData = handlerLocalData();
 let arr = localData.length?localData:[...words];
-let word = ref('请点击开始');
+let word = ref('请“开始”');
 let btnName = ref('开始');
 let wordLen = ref(arr.length);
 let btnDisable = ref(false);
@@ -29,7 +30,7 @@ async function stop () {
   handlerLocalData(arr);
   if(!arr.length) {
     btnDisable.value = true;
-    word.value = '词库已用完， 请重置';
+    word.value = '请“重置”';
   }
 }
 
@@ -37,7 +38,7 @@ async function reset () {
   if(btnName.value === '停止') stop();
   arr = [...words];
   wordLen.value = arr.length;
-  word.value = '请点击开始';
+  word.value = '请“开始”';
   btnDisable.value = false;
   handlerLocalData(arr);
 }
@@ -53,13 +54,13 @@ function handlerLocalData (data) {
 
 <template>
   <main>
-    <div class="content">
-      <h1>{{ word }}</h1>
-      <button class="startBtn" @click="btnName === '开始' ? choose(true) : stop()" :disabled='btnDisable'>{{ btnName }}</button>
-    </div>
+    <h1>{{ word }}</h1>
     <div class="foot">
-      <p>剩余词数：{{wordLen}}</p>
-      <button class="resetBtn"  @click="reset()" >重置</button>
+      <button class="startBtn" @click="btnName === '开始' ? choose(true) : stop()" :disabled='btnDisable'>{{ btnName }}</button>
+      <div class="reset">
+        <p>剩余词数：{{wordLen}}</p>
+        <button class="resetBtn"  @click="reset()" >重置</button>
+      </div>
     </div>
   </main>
 </template>
@@ -71,24 +72,28 @@ main {
   align-items: center;
   height: inherit;
   justify-content: space-evenly;
-}
-
-.content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 30px;
+  width: 100%;
 }
 
 .foot {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  width: 60%;
+  justify-content: space-around;
+}
+
+.reset {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 h1 {
-  font-size: 100px;
+  font-size: 20vw; 
   user-select: none;
+  width: 100%;
+  text-align: center;
 }
 
 .startBtn {
@@ -110,6 +115,7 @@ h1 {
   font-size: large;
   border: none;
   border-radius: 4px;
+  letter-spacing: 3px;
   cursor: pointer;
 }
 </style>

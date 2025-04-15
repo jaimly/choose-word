@@ -4,14 +4,8 @@
 
 # 下载带用户名和密码的链接
 # git clone https://github.com/jaimly/choose-word.git
-# git remote set-url origin https://github.com/jaimly/choose-word.git
 
 Project=choose-word
-
-# 设置项目名、端口
-read -p "请输入端口:" Port
-read -p "是否build前端文件:" IS_BUILD
-read -p "是否Docker部署:" IS_DOCKER
 
 # 更新代码
 git pull origin master
@@ -27,36 +21,12 @@ fi
 rm -rf package.json1
 echo "npm成功"
 
-# 判断是否需要build前端
-if [[ $IS_BUILD == 1 ]]; then
-    npm run build
-    echo "build前端成功"
-fi
+# build前端
+npm run build
+echo "build前端成功"
 
 # 复制静态文件到nginx映射目录
 rm -rf /home/www/choose-word/*
-cp ./dist/* /home/www/choose-word
-docker restart nginx
+cp -avx ./dist/* /home/www/choose-word
+# docker restart nginx
 echo "静态文件已复制"
-
-if [[ $IS_DOCKER != 1 ]]; then 
-    exit
-fi
-
-# 生成Dockerrile文件
-rm -rf Dockerfile
-echo "FROM node:18" >> Dockerfile
-echo "ENV NODE_ENV production" >> Dockerfile
-echo "WORKDIR /app" >> Dockerfile
-echo "COPY . /app/" >> Dockerfile
-echo "CMD npm run preview" >> Dockerfile
-echo "生成DockerFile文件"
-
-# 停止并删除容器
-docker rm -f ${Project}
-# 删除镜像
-docker rmi ${Project}
-# 生成镜像
-docker build -t ${Project} .
-# 启动容器
-docker run -d --name ${Project} --restart=always -p $Port:3000 ${Project}
