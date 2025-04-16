@@ -96,23 +96,23 @@ function handlerLocalScores (data) {
     <div class="score">
       <div>
         <input type="radio" id="scoreA" name="scores" v-model="scoreChecked" value='scoreA' />
-        <h2 for="scoreA">{{'A组: '+scoreA+'分'}}</h2>
+        <h2 for="scoreA">A组: <span>{{scoreA}}</span>分</h2>
       </div>
       <div>
         <input type="radio" id="scoreB" name="scores" v-model="scoreChecked" value='scoreB' />
-        <h2 for="scoreB">{{'B组: '+scoreB+'分'}}</h2>
+        <h2 for="scoreB">B组: <span>{{scoreB}}</span>分</h2>
       </div>
       <div>
         <input type="radio" id="scoreC" name="scores" v-model="scoreChecked" value='scoreC' />
-        <h2 for="scoreC">{{'C组: '+scoreC+'分'}}</h2>
+        <h2 for="scoreC">C组: <span>{{scoreC}}</span>分</h2>
       </div>
       <div>
         <input type="radio" id="scoreD" name="scores" v-model="scoreChecked" value='scoreD' />
-        <h2 for="scoreD">{{'D组: '+scoreD+'分'}}</h2>
+        <h2 for="scoreD">D组: <span>{{scoreD}}</span>分</h2>
       </div>
       <div>
         <input type="radio" id="scoreE" name="scores" v-model="scoreChecked" value='scoreE' />
-        <h2 for="scoreE">{{'E组: '+scoreE+'分'}}</h2>
+        <h2 for="scoreE">E组: <span>{{scoreE}}</span>分</h2>
       </div>
     </div>
     <h1>{{ word }}</h1>
@@ -151,6 +151,11 @@ main {
   display: flex;
   flex-direction: row;
   gap: 3px;
+}
+
+.score h2 span {
+  color: red;
+  font-weight: bold;
 }
 
 .foot {
