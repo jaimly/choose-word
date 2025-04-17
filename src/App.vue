@@ -138,6 +138,7 @@ main {
   height: inherit;
   justify-content: space-evenly;
   width: 100%;
+  height: 100%;
 }
 
 .score {
